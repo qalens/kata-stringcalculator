@@ -13,7 +13,10 @@ pub fn add(numbers: & str) -> usize{
             if(val.starts_with('-')){
                 negatives.push(val);
             }
-            sum = sum + val.parse::<usize>().unwrap_or(0)
+            let num = val.parse::<usize>().unwrap_or(0);
+            if num<=1000 {
+                sum = sum + num;
+            }
         }
     }
     if(!negatives.is_empty()){
