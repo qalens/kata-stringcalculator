@@ -55,4 +55,8 @@ mod tests{
     fn should_throw_exception_when_negative_numbers_are_present(){
         add("-1,2,-3,4,-5");
     }
+    #[test]
+    fn should_ignore_number_bigger_than_1000(){
+        assert_eq!(2,add("2,1001"))
+    }
 }
