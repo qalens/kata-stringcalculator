@@ -70,4 +70,8 @@ mod tests{
     fn should_support_delimiter_of_any_length(){
         assert_eq!(6,add("//[***]\n1***2***3"));
     }
+    #[test]
+    fn should_support_multiple_delimiter(){
+        assert_eq!(6,add("//[*][%]\n1*2%3"));
+    }
 }
