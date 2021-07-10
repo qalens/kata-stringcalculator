@@ -14,4 +14,12 @@ mod tests{
     fn should_add_two_numbers(){
         assert_eq!(3,add("1,2"))
     }
+    #[test]
+    fn should_return_same_number_if_single(){
+        assert_eq!(1,add("1"))
+    }
+    #[test]
+    fn should_return_0_when_empty(){
+        assert_eq!(0,add(""))
+    }
 }
