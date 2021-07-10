@@ -22,4 +22,8 @@ mod tests{
     fn should_return_0_when_empty(){
         assert_eq!(0,add(""))
     }
+    #[test]
+    fn should_return_for_4_numbers(){
+        assert_eq!(10,add("1,2,3,4"))
+    }
 }
