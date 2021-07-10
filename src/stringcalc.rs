@@ -7,11 +7,17 @@ pub fn add(numbers: & str) -> usize{
     }
     let mut split=x.split('\n');
     let mut sum = 0;
-
+    let mut negatives : Vec<&str>=vec![];
     for line in split {
         for val in line.split(del){
+            if(val.starts_with('-')){
+                negatives.push(val);
+            }
             sum = sum + val.parse::<usize>().unwrap_or(0)
         }
+    }
+    if(!negatives.is_empty()){
+        panic!(format!("negatives not allowed {0}",negatives.join(" ")));
     }
     sum
 }
