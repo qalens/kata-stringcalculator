@@ -1,8 +1,15 @@
-pub fn add(x: & str) -> usize{
+pub fn add(numbers: & str) -> usize{
+    let mut del: char = ',';
+    let mut x = numbers.clone();
+    if(x.starts_with("//")){
+        del = x.chars().nth(2).unwrap();
+        x = &numbers[4..];
+    }
     let mut split=x.split('\n');
     let mut sum = 0;
+
     for line in split {
-        for val in line.split(','){
+        for val in line.split(del){
             sum = sum + val.parse::<usize>().unwrap_or(0)
         }
     }
