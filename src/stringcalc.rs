@@ -84,4 +84,8 @@ mod tests{
     fn should_support_multiple_delimiter(){
         assert_eq!(6,add("//[*][%]\n1*2%3"));
     }
+    #[test]
+    fn should_support_multiple_delimiter_with_length_longer_than_one(){
+        assert_eq!(6,add("//[**][%]\n1**2%3"));
+    }
 }
