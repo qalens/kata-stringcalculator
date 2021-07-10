@@ -62,4 +62,8 @@ mod tests{
     fn should_ignore_number_bigger_than_1000(){
         assert_eq!(2,add("2,1001"))
     }
+    #[test]
+    fn should_support_delimiter_of_any_length(){
+        assert_eq!(3,add("//[***]\n1***2***3"))
+    }
 }
