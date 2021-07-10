@@ -43,4 +43,10 @@ mod tests{
     fn should_support_dynamic_delimiter(){
         assert_eq!(3,add("//;\n1;2"))
     }
+
+    #[should_panic(expected = "negatives not allowed -1 -3 -5")]
+    #[test]
+    fn should_throw_exception_when_negative_numbers_are_present(){
+        add("-1,2,-3,4,-5");
+    }
 }
