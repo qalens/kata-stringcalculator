@@ -1,8 +1,10 @@
 pub fn add(x: & str) -> usize{
-    let mut split=x.split(',');
+    let mut split=x.split('\n');
     let mut sum = 0;
-    for val in split {
-        sum = sum + val.parse::<usize>().unwrap_or(0)
+    for line in split {
+        for val in line.split(','){
+            sum = sum + val.parse::<usize>().unwrap_or(0)
+        }
     }
     sum
 }
