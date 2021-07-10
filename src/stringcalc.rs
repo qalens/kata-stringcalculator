@@ -1,5 +1,10 @@
 pub fn add(x: & str) -> usize{
-    panic!("Not Implemented");
+    let mut split=x.split(',');
+    let mut sum = 0;
+    for val in split {
+        sum = sum + val.parse::<usize>().unwrap();
+    }
+    sum
 }
 #[cfg(test)]
 mod tests{
