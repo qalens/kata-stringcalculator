@@ -26,4 +26,8 @@ mod tests{
     fn should_return_for_4_numbers(){
         assert_eq!(10,add("1,2,3,4"))
     }
+    #[test]
+    fn should_return_sum_when_new_line_present(){
+        assert_eq!(6,add("1\n2,3"))
+    }
 }
