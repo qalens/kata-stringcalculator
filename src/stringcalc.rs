@@ -1,20 +1,30 @@
 pub fn add(numbers: & str) -> usize{
-    let mut del :String= ",".to_string();
+    let mut dels :Vec<String>= vec![",".to_string()];
     let mut x = numbers.clone();
 
     let mut split=x.split('\n');
     let mut sum = 0;
-    let mut negatives : Vec<&str>=vec![];
+    let mut negatives : Vec<String>=vec![];
     let mut index = 0;
+
     for line in split {
         if(line.starts_with("//") && index == 0){
-            let newstr = line.replace("//","").replace("[","").replace("]","");
-            del  = format!("{0}",newstr);
+            dels.pop();
+            let newstrs = line.split("][");
+            for new_str in newstrs {
+                let delim = new_str.replace("//","").replace("[","").replace("]","");
+                dels.push(format!("{0}",delim));
+            }
+
             continue;
         }
-        for val in line.split(&del){
+        let mut new_line:String= line.to_string();
+        for del in &dels {
+            new_line = format!("{0}",new_line.replace(del,","));
+        }
+        for val in new_line.split(','){
             if(val.starts_with('-')){
-                negatives.push(val);
+                negatives.push(format!("{0}",val));
             }
             let num = val.parse::<usize>().unwrap_or(0);
             if num<=1000 {
