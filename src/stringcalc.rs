@@ -1,15 +1,18 @@
 pub fn add(numbers: & str) -> usize{
-    let mut del: char = ',';
+    let mut del :String= ",".to_string();
     let mut x = numbers.clone();
-    if(x.starts_with("//")){
-        del = x.chars().nth(2).unwrap();
-        x = &numbers[4..];
-    }
+
     let mut split=x.split('\n');
     let mut sum = 0;
     let mut negatives : Vec<&str>=vec![];
+    let mut index = 0;
     for line in split {
-        for val in line.split(del){
+        if(line.starts_with("//") && index == 0){
+            let newstr = line.replace("//","").replace("[","").replace("]","");
+            del  = format!("{0}",newstr);
+            continue;
+        }
+        for val in line.split(&del){
             if(val.starts_with('-')){
                 negatives.push(val);
             }
@@ -18,6 +21,7 @@ pub fn add(numbers: & str) -> usize{
                 sum = sum + num;
             }
         }
+        index = index+1;
     }
     if(!negatives.is_empty()){
         panic!(format!("negatives not allowed {0}",negatives.join(" ")));
@@ -64,6 +68,6 @@ mod tests{
     }
     #[test]
     fn should_support_delimiter_of_any_length(){
-        assert_eq!(3,add("//[***]\n1***2***3"))
+        assert_eq!(6,add("//[***]\n1***2***3"));
     }
 }
